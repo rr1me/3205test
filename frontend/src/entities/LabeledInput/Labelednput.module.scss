@@ -9,6 +9,8 @@
 
   cursor: text;
   user-select: none;
+
+  transition: v.$transition;
 }
 
 .test{
@@ -41,4 +43,8 @@
 .blend {
   mix-blend-mode: lighten;
   position: relative;
+}
+
+.error{
+  border-color: rgb(150, 0, 0);
 }

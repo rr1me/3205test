@@ -33,10 +33,11 @@ export default Form;
 
 const EmailInput = () => {
   const dispatch = useAppDispatch();
+  const error = useAppSelector(s=>s.formSlice.errors.invalidEmail);
 
   const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => dispatch(setEmail(e.target.value));
 
-  return <LabeledInput label='Email *' onChange={onEmailChange}/>;
+  return <LabeledInput error={error} label='Email *' onChange={onEmailChange}/>;
 };
 
 const NumberInput = () => {

@@ -6,11 +6,13 @@ const LabeledInput = ({
   label,
   additionalClassName = '',
   invisible = false,
+  error = false,
   ...props
 }: {
 	label: string;
 	additionalClassName?: string;
 	invisible?: boolean;
+    error?: boolean;
 } & HTMLProps<HTMLInputElement>) => {
   const isFirstRender = useIsFirstRender();
   const [focus, setFocus] = useState(false);
@@ -48,8 +50,10 @@ const LabeledInput = ({
 
   const focusEvent = (x: boolean) => () => setFocus(x);
 
-  const inputClassName =
-		s.inputWrapper + ' ' + s.blend + combinedStyle(!!additionalClassName, additionalClassName) + combinedStyle(invisible, s.inputInvisible);
+  const inputClassName = s.inputWrapper + ' ' + s.blend
+    + combinedStyle(!!additionalClassName, additionalClassName)
+    + combinedStyle(invisible, s.inputInvisible)
+    + combinedStyle(error, s.error);
 
   return (
     <div className={inputClassName} ref={wrapperRef}>

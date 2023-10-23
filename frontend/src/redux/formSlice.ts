@@ -27,11 +27,30 @@ const formSlice = createSlice({
   name: 'formSlice',
   initialState,
   reducers: {
-    setEmail: (state, { payload }) => {
+    setEmail: (state, { payload }: {payload: string}) => {
       state.email = payload;
     },
-    setNumber: (state, { payload }) => {
-      state.number = payload;
+    setNumber: (state, { payload: str }: {payload: string}) => {
+      const strLength = str.length;
+      if (str[strLength-1] === '-') {
+        state.number = str.slice(0, strLength-1);
+        return;
+      }
+
+      const digits = str.replace(/\D/g, '');
+      const digitLength = digits.length;
+
+      if (digits !== '' && digitLength > 2 && digitLength % 2 !== 0) {
+        let formatted = str[0];
+
+        for (let i = 2; i < digits.length; i += 2)
+          formatted += digits.slice(i-1, i) + '-' + digits[i];
+
+        state.number = formatted;
+        return;
+      }
+
+      state.number = str;
     },
     setLoading: state => {
       state.loading = !state.loading;

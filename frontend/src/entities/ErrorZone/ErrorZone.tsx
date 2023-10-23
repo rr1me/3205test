@@ -23,12 +23,19 @@ const ErrorZone = () => {
     if (positiveError){
       const exactError = errorMessages[positiveError as keyof typeof errorMessages];
 
-      errorElem.style.opacity = '0';
-
-      setTimeout(() => {
+      const callback = () => {
         setError(exactError);
         errorElem.style.opacity = '1';
-      }, 250);
+      };
+
+      if (!error){
+        callback();
+        return;
+      }
+
+      errorElem.style.opacity = '0';
+
+      setTimeout(callback, 250);
 
       return;
     }
@@ -49,39 +56,3 @@ const errorMessages: Record<ErrorType, string> = {
   invalidEmail: 'Please provide valid email address',
   internalError: 'Internal error. Please try again later'
 };
-
-
-
-
-// if (!positiveError && !!error){
-//   console.log('1');
-//   errorRef.current!.style.opacity = '0';
-//   setTimeout(() => {
-//     setError('');
-//     changeZoneHeight(0);
-//   }, 250);
-//   return;
-// }
-//
-// if (!!positiveError && !error){
-//   console.log('2');
-//   setError(errorMessages[positiveError[0] as keyof typeof errorMessages]);
-//   requestAnimationFrame(() => {
-//     if (errorRef.current) errorRef.current.style.opacity = '1';
-//     changeZoneHeight(17);
-//   });
-//   return;
-// }
-//
-// if (positiveError[0] !== error){
-//   errorRef.current!.style.opacity = '0';
-//
-//   setTimeout(() => {
-//     setError(errorMessages[positiveError[0] as keyof typeof errorMessages]);
-//     // changeZoneHeight(0);
-//     requestAnimationFrame(() => {
-//       errorRef.current!.style.opacity = '1';
-//       // changeZoneHeight(17);
-//     });
-//   }, 250);
-// }
