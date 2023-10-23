@@ -1,0 +1,16 @@
+@use '../../app/vars' as v;
+
+.wrapper{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  margin-top: 17px;
+  width: 350px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

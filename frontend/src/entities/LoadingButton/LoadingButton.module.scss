@@ -1,0 +1,54 @@
+@use '../../app/vars' as v;
+
+.button {
+  @include v.button;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  transition: 200ms;
+}
+
+.loading{
+  background-color: rgba(87, 87, 87, 0.56);
+}
+
+.loader{
+  position: absolute;
+  display: block;
+  animation: loaderAnimation 1.4s linear infinite;
+  animation-play-state: running;
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes loaderAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+     transform: rotate(360deg);
+   }
+}
+
+.circle{
+  display: block;
+  stroke: currentColor;
+  stroke-dasharray: 80px,200px;
+  stroke-dashoffset: 0;
+  animation: animationCircle 1.4s ease-in-out infinite;
+}
+
+@keyframes animationCircle {
+  0% {
+    stroke-dasharray: 1px,200px;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 100px,200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px,200px;
+    stroke-dashoffset: -125px;
+  }
+}

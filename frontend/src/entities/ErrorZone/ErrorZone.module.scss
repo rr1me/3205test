@@ -1,0 +1,31 @@
+.error{
+  font: 500 15px HelveticaNeueCyr;
+  color: red;
+  transition: 250ms;
+  height: 17px;
+  //opacity: 0;
+  //transition: 250ms;
+  //animation: appearingAnim 250ms linear;
+}
+
+//@keyframes appearingAnim {
+//  0% {
+//    opacity: 0;
+//  }
+//  100%{
+//    opacity: 1;
+//  }
+//}
+
+//.errorDisappear {
+//  animation: appearingAnim 250ms linear reverse !important;
+//}
+
+//@keyframes disappearingAnim {
+//  0% {
+//    opacity: 1;
+//  }
+//  100%{
+//    opacity: 0;
+//  }
+//}

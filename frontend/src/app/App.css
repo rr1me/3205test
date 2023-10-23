@@ -1,0 +1,7 @@
+body, html, body>div, body>div>div {
+    height: 100%;
+}
+
+.App{
+    color: white;
+}
