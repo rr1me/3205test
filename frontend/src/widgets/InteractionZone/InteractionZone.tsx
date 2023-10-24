@@ -21,7 +21,7 @@ const InteractionZone = () => {
     <form className={s.form} onSubmit={onSubmit}>
       <EmailInput/>
       <NumberInput/>
-      <Button/>
+      <LoadingButton/>
       <ErrorZone/>
     </form>
   );
@@ -47,14 +47,4 @@ const NumberInput = () => {
   const onNumberChange = (e: ChangeEvent<HTMLInputElement>) => dispatch(setNumber(e.target.value));
 
   return <LabeledInput label='Number' value={number} onChange={onNumberChange}/>;
-};
-
-const Button = () => {
-  const loading = useAppSelector(s=>s.formSlice.loading);
-
-  return (
-    <LoadingButton type='submit' loading={loading}>
-			Submit
-    </LoadingButton>
-  );
 };

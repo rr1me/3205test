@@ -12,7 +12,7 @@ export type FormData = {
   email: string;
   number: string;
   loading: boolean;
-  reject: boolean;
+  // reject: boolean;
   errors: Errors;
   accounts: Account[];
 }
@@ -26,7 +26,7 @@ const initialState: FormData = {
   email: '',
   number: '',
   loading: false,
-  reject: false,
+  // reject: false,
   errors,
   accounts: []
 };
@@ -54,14 +54,13 @@ const formSlice = createSlice({
   extraReducers: b => {
     b
       .addCase(submitForm.pending, state => {
-        state.loading = true;
-        state.reject = !validate(state);
+        state.loading = validate(state);
       })
       .addCase(submitForm.rejected, (state, { payload }) => {
         if (payload === 'New request') return;
-        state.loading = false;
-        if (state.reject) return;
+        if (!state.loading) return;
         state.errors.internalError = true;
+        state.loading = false;
       })
       .addCase(submitForm.fulfilled, (state, { payload }: { payload: Account[] }) => {
         state.loading = false;

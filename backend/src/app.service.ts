@@ -43,7 +43,7 @@ export class AppService {
       (x: AvailableAccount) => x.email === b.email && x.number === b.number
       :
       (x: AvailableAccount) => x.email === b.email;
-    // await new Promise(r => setTimeout(r, 5000));
+    await new Promise(r => setTimeout(r, 5000));
     return this.availableAccounts.filter(predicate);
   }
 }

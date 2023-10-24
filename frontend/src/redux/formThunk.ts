@@ -10,9 +10,9 @@ export const submitForm = createAsyncThunk(
   'submit',
   async (_, thunkAPI: ThunkApi) => {
     const { getState, rejectWithValue } = thunkAPI;
-    const { reject, email, number } = (getState() as RootState).formSlice;
+    const { loading, email, number } = (getState() as RootState).formSlice;
 
-    if (reject) return rejectWithValue();
+    if (!loading) return rejectWithValue();
 
     const source = axios.CancelToken.source();
 

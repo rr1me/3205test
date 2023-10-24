@@ -4,12 +4,20 @@
   @include v.button;
   align-self: flex-end;
   display: flex;
-  justify-content: center;
   transition: 200ms;
 }
 
+.button:active{
+  transform: translateY(4%) scale(98%);
+}
+
+.label{
+  width: 100%;
+  text-align: end;
+}
+
 .loading{
-  background-color: rgba(87, 87, 87, 0.56);
+  background-color: #d36827;
 }
 
 .loader{
