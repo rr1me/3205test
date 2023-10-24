@@ -1,7 +1,6 @@
 @use '../../app/vars' as v;
 
 .inputWrapper {
-  font: v.$HelveticaNeueCyr;
   font-size: 16px;
 
   border-radius: v.$b_radius;
@@ -35,7 +34,7 @@
 
   transition: 250ms;
   pointer-events: none;
-  font-size: 13px;
+  font-size: 14px;
 
   background: #0D0000;
 }

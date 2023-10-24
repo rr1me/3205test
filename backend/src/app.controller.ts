@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { AppService, AvailableAccount, DTO } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post()
+  @HttpCode(200)
+  getHello(@Body() b: DTO): Promise<AvailableAccount[]> {
+    return this.appService.getAccounts(b);
   }
 }

@@ -4,6 +4,9 @@ import { combinedStyle } from '../../shared/utils';
 
 const LoadingButton = ({ loading = false, children, ...props }:
   {loading?: boolean, children: ReactNode} & ButtonHTMLAttributes<HTMLButtonElement>) => {
+
+
+
   return (
     <button className={s.button + combinedStyle(loading, s.loading)} {...props}>
 

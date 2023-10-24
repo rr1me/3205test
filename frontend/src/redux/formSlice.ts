@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { submitForm } from './formThunk';
 import validate from '../shared/validate';
+import { dashNumberFormat, getDigits } from '../shared/utils';
+
+type Account = {
+  email: string,
+  number: string;
+}
 
 export type FormData = {
   email: string;
@@ -8,6 +14,7 @@ export type FormData = {
   loading: boolean;
   reject: boolean;
   errors: Errors;
+  accounts: Account[];
 }
 
 const errors: Errors = {
@@ -20,7 +27,8 @@ const initialState: FormData = {
   number: '',
   loading: false,
   reject: false,
-  errors
+  errors,
+  accounts: []
 };
 
 const formSlice = createSlice({
@@ -37,20 +45,7 @@ const formSlice = createSlice({
         return;
       }
 
-      const digits = str.replace(/\D/g, '');
-      const digitLength = digits.length;
-
-      if (digits !== '' && digitLength > 2 && digitLength % 2 !== 0) {
-        let formatted = str[0];
-
-        for (let i = 2; i < digits.length; i += 2)
-          formatted += digits.slice(i-1, i) + '-' + digits[i];
-
-        state.number = formatted;
-        return;
-      }
-
-      state.number = str;
+      state.number = dashNumberFormat(str);
     },
     setLoading: state => {
       state.loading = !state.loading;
@@ -62,13 +57,15 @@ const formSlice = createSlice({
         state.loading = true;
         state.reject = !validate(state);
       })
-      .addCase(submitForm.rejected, state => {
+      .addCase(submitForm.rejected, (state, { payload }) => {
+        if (payload === 'New request') return;
         state.loading = false;
         if (state.reject) return;
         state.errors.internalError = true;
       })
-      .addCase(submitForm.fulfilled, state => {
+      .addCase(submitForm.fulfilled, (state, { payload }: { payload: Account[] }) => {
         state.loading = false;
+        state.accounts = payload;
       });
   }
 });
