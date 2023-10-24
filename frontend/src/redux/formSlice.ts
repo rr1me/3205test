@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { submitForm } from './formThunk';
 import validate from '../shared/validate';
-import { dashNumberFormat, getDigits } from '../shared/utils';
+import { dashNumberFormat } from '../shared/utils';
 
 type Account = {
   email: string,
@@ -12,7 +12,6 @@ export type FormData = {
   email: string;
   number: string;
   loading: boolean;
-  // reject: boolean;
   errors: Errors;
   accounts: Account[];
 }
@@ -26,7 +25,6 @@ const initialState: FormData = {
   email: '',
   number: '',
   loading: false,
-  // reject: false,
   errors,
   accounts: []
 };

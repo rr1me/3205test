@@ -26,4 +26,4 @@ export const dashNumberFormat = (s: string) => {
   }
 
   return formatted;
-}
+};

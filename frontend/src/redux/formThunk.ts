@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkApi } from '../shared/processRequest';
 import { RootState } from './store';
 import axios, { AxiosResponse, CancelTokenSource } from 'axios';
 import { getDigits, isNullOrEmpty } from '../shared/utils';
@@ -10,11 +9,11 @@ const currentRequest: { x: null | {req: Promise<AxiosResponse>, cancel: CancelTo
 
 export const submitForm = createAsyncThunk(
   'submit',
-  async (_, thunkAPI: ThunkApi) => {
+  async (_, thunkAPI) => {
     const { getState, rejectWithValue } = thunkAPI;
     const { loading, email, number } = (getState() as RootState).formSlice;
 
-    if (!loading) return rejectWithValue();
+    if (!loading) return rejectWithValue('invalid');
 
     const source = axios.CancelToken.source();
 
