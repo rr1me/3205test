@@ -4,6 +4,8 @@ import { RootState } from './store';
 import axios, { AxiosResponse, CancelTokenSource } from 'axios';
 import { getDigits, isNullOrEmpty } from '../shared/utils';
 
+const URL = process.env.REACT_APP_API as string;
+
 const currentRequest: { x: null | {req: Promise<AxiosResponse>, cancel: CancelTokenSource} } = { x: null };
 
 export const submitForm = createAsyncThunk(
@@ -16,7 +18,7 @@ export const submitForm = createAsyncThunk(
 
     const source = axios.CancelToken.source();
 
-    const r = axios.post('http://localhost:3001', {
+    const r = axios.post(URL, {
       email,
       number: isNullOrEmpty(number) ? undefined : getDigits(number)
     }, { cancelToken: source.token });
